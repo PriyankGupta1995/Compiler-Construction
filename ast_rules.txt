@@ -1,0 +1,279 @@
+f<program> ===> <otherFunctions> <mainFunction> 	  
+#<program>.child1 = <otherFunctions> , <program>.child2 = <mainFunction>
+
+<mainFunction> ===> TK_MAIN <stmts> TK_END        	  
+#pull TK_MAIN, <mainFunction>.child1 = <stmts> , delete TK_END
+
+<otherFunctions> ===> TK_EPSILON						
+#pull
+
+<otherFunctions> ===> <function> <otherFunctions>       
+#<otherFunctions>.child1 = <function> , <otherFunctions>.child2 = <otherFunctions>
+
+<function> ===> TK_FUNID <input_par> <output_par> TK_SEM <stmts> TK_END           
+#PULL TK_FUNID, <function>.child1 = <input_par> , <function>.child2 = <output_par> , <function.child3 = <stmts>
+
+<input_par> ===> TK_INPUT TK_PARAMETER TK_LIST TK_SQL <parameter_list> TK_SQR    
+#pull TK_INPUT;child1= <parameter_list>
+
+<output_par> ===> TK_EPSILON																	
+#pull up
+
+<output_par> ===> TK_OUTPUT TK_PARAMETER TK_LIST TK_SQL <parameter_list> TK_SQR   
+# pull TK_OUTPUT; child1 = <parameter_list>
+
+<parameter_list> ===> <dataType> TK_ID <remaining_list>         
+#pull TK_ID , <parameter_list>.child1 = <dataType> , <parameter_list>.child2 = <remaining_list>
+
+<dataType> ===> <primitiveDatatype>                               
+#pull <primitiveDatatype>
+
+<dataType> ===> <constructedDatatype>                               
+#pull <constructedDatatype>
+
+<primitiveDatatype> ===> TK_INT                                        
+#pull TK_INT
+
+<primitiveDatatype> ===> TK_REAL										
+#pull TK_REAL
+
+
+<constructedDatatype> ===> TK_RECORD TK_RECORDID                        
+#pull TK_RECORDID
+
+<remaining_list> ===> TK_EPSILON 										
+#pull
+
+<remaining_list> ===> TK_COMMA <parameter_list>                          
+#pull <parameter_list>
+
+<stmts> ===> <typeDefinitions> <declarations> <otherStmts> <returnStmt>    
+#<stmts>.child1 = <typeDefinitions> , <stmts>.child2 = <declarations> , <stmts>.child3 = <otherStmts> , <stmts>.child4 = <returnStmt>
+
+<typeDefinitions> ===> TK_EPSILON                                           
+#pull
+
+<typeDefinitions> ===> <typeDefinition> <typeDefinitions>        
+#<typeDefinitions>.child1 = <typeDefinition> , <typeDefinitions>.child2 = <typeDefinitions>
+
+<fieldDefinitions> ===> <fieldDefinition> <fieldDefinition> <moreFields>    
+#child1= <fieldDefinition1> , <fieldDefinitions>.child2 = <fieldDefinition> , <fieldDefinitions>.child3 = <moreFields>
+
+<typeDefinition> ===> TK_RECORD TK_RECORDID <fieldDefinitions> TK_ENDRECORD TK_SEM     
+#pull TK_RECORDID, <typeDefinition>.child1 = <fieldDefinitions>
+
+<fieldDefinition> ===> TK_TYPE <primitiveDatatype> TK_COLON TK_FIELDID TK_SEM           
+#pull TK_FIELDID, <fieldDefinition>.child1= <primitiveDatatype>
+
+<moreFields> ===> TK_EPSILON                                        
+#pull
+
+<moreFields> 2 <fieldDefinition> <moreFields>                       
+#<moreFields>.child1 = <fieldDefinition>  , <moreFields>.child2 = <moreFields>
+
+<declarations> ===> TK_EPSILON                                           
+#pull
+
+<declarations> ===> <declaration> <declarations>                        
+#<declarations>.child1 = <declaration> , <declarations>.child2 = <declarations>
+
+<declaration> ===> TK_TYPE <dataType> TK_COLON TK_ID <global_or_not> TK_SEM   
+#pull TK_ID , <declaration>.child1 = <dataType> , <declaration>.child2 = <global_or_not> 
+
+<global_or_not> ===> TK_EPSILON                                            
+#pull
+
+<global_or_not> ===> TK_COLON TK_GLOBAL                                       
+# pull TK_GLOBAL
+
+<otherStmts> ===> TK_EPSILON                                                 
+#pull up
+
+<otherStmts> ===> <stmt> <otherStmts>                              
+#<otherStmts>.child1 = <stmt> , <otherStmts>.child2 = <otherStmts>
+
+<stmt> ===> <assignmentStmt>                                        
+#pull <assignmentStmt>
+
+<stmt> ===> <iterativeStmt>                                            
+#pull <iterativeStmt>
+
+<stmt> ===> <conditionalStmt>                                         
+#pull <conditionalStmt>
+
+<stmt> ===> <ioStmt>                                                      
+#pull <ioStmt>
+
+<stmt> ===> <funCallStmt>                                                   
+#pull <funCallStmt>
+
+<assignmentStmt> ===> <singleOrRecId> TK_ASSIGNOP <arithmeticExpression> TK_SEM    
+#pull TK_ASSIGNOP , <assignmentStmt>.child1 = <singleOrRecId>, <assignmentStmt>.child2 = <arithmeticExpression>
+
+<singleOrRecId> ===> TK_ID <new_24>   
+#pull TK_ID , <singleOrRecId>.child1 = <new_24>
+
+<new_24> ===> TK_EPSILON                         
+#pull up
+
+<new_24> ===> TK_DOT TK_FIELDID                  
+#pull TK_FIELDID
+
+<funCallStmt> ===> <outputParameters> TK_CALL TK_FUNID TK_WITH TK_PARAMETERS <inputParameters> TK_SEM 
+#pull TK_FUNID, <funCallStmt>.child1 = <outputParameters>,<funCallStmt>.child2 = <inputParameters>
+
+<outputParameters> ===> TK_EPSILON                          
+#pull up
+
+<outputParameters> ===> TK_SQL <idList> TK_SQR TK_ASSIGNOP   
+#pull <idList>
+
+<inputParameters> ===> TK_SQL <idList> TK_SQR                  
+#pull <idList>
+
+<iterativeStmt> ===> TK_WHILE TK_OP <booleanExpression> TK_CL <stmt> <otherStmts> TK_ENDWHILE  
+#pull TK_WHILE, <iterativeStmt>.child1 = <booleanExpression> , <iterativeStmt>.child2 = <stmt> , <iterativeStmt>.child3 = <otherStmts>
+
+<conditionalStmt> ===> TK_IF TK_OP <booleanExpression> TK_CL TK_THEN <stmt> <otherStmts> <elsePart> 
+#  pull TK_IF
+<conditionalStmt>.child1 = <booleanExpression> , <conditionalStmt>.child2 = <stmt> , <conditionalStmt>.child3 = <otherStmts> , <conditionalStmt>.child4 = <elsePart>
+
+<elsePart> ===> TK_ELSE <stmt> <otherStmts> TK_ENDIF  
+#pull up TK_ELSE,<elsePart>.child1 = <stmt> , <elsePart>.child2 = <otherStmts>
+
+<elsePart> ===> TK_ENDIF                    
+#pull up
+
+<ioStmt> ===> TK_READ TK_OP <singleOrRecId> TK_CL TK_SEM   
+#pull TK_READ , <ioStmt>.child1 = <singleOrRecId>
+
+<ioStmt> ===> TK_WRITE TK_OP <allVar> TK_CL TK_SEM                 
+#pull TK_WRITE, <ioStmt>.child1 = <allVar>
+
+<allVar> ===> TK_NUM                                                         
+#pull TK_NUM
+
+<allVar> ===> TK_RNUM                                                           
+#pull TK_RNUM
+
+<allVar> ===> TK_ID <new_32>                                                    
+#pull TK_ID, <allVar>.child1 = <new_32>
+
+<new_32> ===> TK_EPSILON                                                       
+#pull up
+
+<new_32> ===> TK_DOT TK_FIELDID                                                  
+#pull TK_FIELDID
+
+changed below rule
+/*
+<arithmeticExpression> ===> <term> <expPrime>                      
+#  , <arithmeticExpression>.child1 = <term>, child2 = <expPrime>*/
+
+<expPrime> ===> TK_EPSILON                                            
+#if any child exists , pull it
+
+<expPrime> ===> <lowPrecedenceOperators> <term> <expPrime>      
+#pull <lowPrecedenceOperators>, <expPrime>.child1 = <term> , <expPrime>.child2 = <expPrime> 
+
+<term> ===> <factor> <termPrime>    
+#<term>.child1 = <factor> , <term>.child2 = <termPrime>
+
+<termPrime> ===> TK_EPSILON                  
+#if any child exists , pull it
+
+<termPrime> ===> <highPrecedenceOperators> <factor> <termPrime>   
+#pull <highPrecedenceOperators>,<termPrime>.child1 = <factor>, <termPrime>.child2 =  <termPrime>
+
+<factor> ===> TK_OP <arithmeticExpression> TK_CL    
+#pull <arithmeticExpression>
+
+<factor> ===> <all>                                       
+#pull <all>
+
+<highPrecedenceOperators> ===> TK_MUL                         
+#pull TK_MULL
+
+<highPrecedenceOperators> ===> TK_DIV                          
+#pull TK_DIV
+
+<lowPrecedenceOperators> ===> TK_PLUS                             
+#pull TK_PLUS
+
+<lowPrecedenceOperators> ===> TK_MINUS                             
+#pull TK_MINUS
+
+<all> ===> TK_ID <new_34>                                               
+#pull TK_ID , <all>.child1 = <new_34>
+
+<all> ===> TK_NUM                                                    
+#pull TK_NUM
+
+<all> ===> TK_RNUM                                               
+#pull TK_RNUM
+
+<new_34> ===> TK_EPSILON                                           
+#pull up
+
+<new_34> ===> TK_DOT TK_FIELDID                                   
+#pull TK_FIELDID
+
+<booleanExpression> ===> TK_OP <booleanExpression> TK_CL <logicalOp> TK_OP <booleanExpression> TK_CL 
+#pull <logicalOp> , <booleanExpression>.child1 = <booleanExpression> , <booleanExpression>.child2 = <booleanExpression>
+
+<booleanExpression> ===> <var> <relationalOp> <var>  
+#pull <relationalOp> , <booleanExpression>.child1 = <var> , <booleanExpression>.child2 = <var> 
+
+<booleanExpression> ===> TK_NOT TK_OP <booleanExpression> TK_CL  
+#pull _NOT , <booleanExpression>.child1 = <booleanExpression>
+
+<var> ===> TK_ID        
+#pull TK_ID
+
+<var> ===> TK_NUM           
+#pull TK_NUM
+
+<var> ===> TK_RNUM               
+#pull TK_RNUM
+
+<logicalOp> ===> TK_AND               
+#pull TK_AND
+
+<logicalOp> ===> TK_OR               
+#pull TK_OR
+
+<relationalOp> ===> TK_LE                    
+#pull TK_LE
+
+<relationalOp> ===> TK_LT  
+#pull TK_LT
+
+<relationalOp> ===> TK_EQ       
+#pull TK_EQ
+
+<relationalOp> ===> TK_GT        
+#pull TK_GT
+
+<relationalOp> ===> TK_GE         
+#pull TK_GE
+
+<relationalOp> ===> TK_NE             
+#pull TK_NE
+
+<returnStmt> ===> TK_RETURN <optionalReturn> TK_SEM          
+#pull  <optionalReturn>
+
+<optionalReturn> ===> TK_EPSILON                                         
+#pull up
+
+<optionalReturn> ===> TK_SQL <idList> TK_SQR                      
+#pull <idList>
+
+<idList> ===> TK_ID <more_ids>      
+#pull TK_ID , <idList>.child1 = <more_ids>
+
+<more_ids> ===> TK_EPSILON                 
+#pull up
+
+<more_ids> ===> TK_COMMA <idList>          
+#pull <idList>

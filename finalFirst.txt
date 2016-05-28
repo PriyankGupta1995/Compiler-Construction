@@ -1,0 +1,51 @@
+<program> 2 TK_MAIN TK_FUNID 
+<otherFunctions> 2 TK_EPSILON TK_FUNID
+<mainFunction> 1 TK_MAIN
+<stmts> 11 TK_RECORD TK_TYPE TK_RECORDID TK_ID TK_WHILE TK_IF TK_READ TK_WRITE TK_SQL TK_CALL TK_RETURN
+<function> 1 TK_FUNID
+<input_par> 1 TK_INPUT
+<output_par> 2 TK_EPSILON TK_OUTPUT
+<parameter_list> 3 TK_INT TK_RECORD TK_REAL
+<dataType> 3 TK_INT TK_REAL TK_RECORD
+<remaining_list> 2 TK_EPSILON TK_COMMA
+<primitiveDatatype> 2 TK_INT TK_REAL
+<constructedDatatype> 1 TK_RECORD
+<typeDefinitions> 2 TK_EPSILON TK_RECORD
+<declarations> 2 TK_EPSILON TK_TYPE
+<otherStmts> 9 TK_EPSILON TK_ID TK_RECORDID TK_WHILE TK_IF TK_READ TK_WRITE TK_SQL TK_CALL
+<returnStmt> 1 TK_RETURN
+<typeDefinition> 1 TK_RECORD
+<fieldDefinitions> 2 TK_EPSILON TK_TYPE
+<fieldDefinition> 1 TK_TYPE
+<moreFields> 2 TK_EPSILON TK_TYPE
+<global_or_not> 2 TK_EPSILON TK_COLON
+<declaration> 1 TK_TYPE
+<stmt> 8 TK_RECORDID TK_ID TK_WHILE TK_IF TK_READ TK_WRITE TK_SQL TK_CALL
+<assignmentStmt> 2 TK_RECORDID TK_ID
+<iterativeStmt> 1 TK_WHILE
+<conditionalStmt> 1 TK_IF
+<ioStmt> 2 TK_READ TK_WRITE
+<funCallStmt> 2 TK_SQL TK_CALL
+<singleOrRecId> 1 TK_ID
+<new_24> 2 TK_EPSILON TK_COLON
+<arithmeticExpression> 4 TK_NUM TK_RNUM TK_ID TK_OP
+<outputParameters> 2 TK_EPSILON TK_SQL
+<inputParameters> 1 TK_SQL
+<idList> 1 TK_ID
+<booleanExpression> 5 TK_OP TK_NOT TK_ID TK_NUM TK_RNUM
+<elsePart> 2 TK_ELSE TK_ENDIF
+<allVar> 3 TK_NUM TK_RNUM TK_ID
+<var> 3 TK_NUM TK_RNUM TK_ID
+<all> 3 TK_NUM TK_RNUM TK_ID
+<new_32> 2 TK_EPSILON TK_DOT
+<expPrime> 3 TK_EPSILON TK_PLUS TK_MINUS
+<lowPrecedenceOperators> 2 TK_PLUS TK_MINUS
+<term> 4 TK_NUM TK_RNUM TK_ID TK_OP
+<highPrecedenceOperators> 2 TK_MUL TK_DIV
+<factor> 4 TK_NUM TK_RNUM TK_ID TK_OP
+<termPrime> 3 TK_EPSILON TK_MUL TK_DIV
+<logicalOp> 2 TK_AND TK_OR
+<relationalOp> 6 TK_LT TK_LE TK_EQ TK_GT TK_GE TK_NE
+<optionalReturn> 2 TK_EPSILON TK_SQL
+<more_ids> 2 TK_EPSILON TK_COMMA
+<new_34> 2 TK_EPSILON TK_DOT

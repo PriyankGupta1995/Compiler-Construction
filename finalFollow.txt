@@ -1,0 +1,51 @@
+<program> 1 TK_DOLLAR
+<otherFunctions> 1 TK_MAIN
+<mainFunction> 1 TK_DOLLAR
+<stmts> 1 TK_END
+<function> 0
+<input_par> 0
+<output_par> 1 TK_SEM
+<parameter_list> 0
+<dataType> 0
+<remaining_list> 1 TK_SQR
+<primitiveDatatype> 0
+<constructedDatatype> 0
+<typeDefinitions> 10 TK_TYPE TK_ID TK_RECORDID TK_WHILE TK_ID TK_READ TK_WRITE TK_SQL TK_CALL TK_RETURN
+<declarations> 9 TK_ID TK_RECORDID TK_WHILE TK_IF TK_READ TK_WRITE TK_SQL TK_CALL TK_RETURN
+<otherStmts> 4 TK_RETURN TK_ENDWHILE TK_ELSE TK_ENDIF
+<returnStmt> 0
+<typeDefinition> 0
+<fieldDefinitions> 0
+<fieldDefinition> 0
+<moreFields> 1 TK_ENDRECORD
+<global_or_not> 1 TK_SEM
+<declaration> 0
+<stmt> 0
+<assignmentStmt> 0
+<iterativeStmt> 0
+<conditionalStmt> 0
+<ioStmt> 0
+<funCallStmt> 0
+<singleOrRecId> 1 TK_CL
+<new_24> 2 TK_ASSIGNOP TK_CL
+<arithmeticExpression> 0
+<outputParameters> 1 TK_CALL
+<inputParameters> 0
+<idList> 0
+<booleanExpression> 0
+<elsePart> 0
+<allVar> 0
+<var> 0
+<all> 0
+<new_32> 1 TK_CL
+<expPrime> 2 TK_SEM TK_CL
+<lowPrecedenceOperators> 0
+<term> 0
+<highPrecedenceOperators> 0
+<factor> 0
+<termPrime> 4 TK_PLUS TK_MINUS TK_SEM TK_CL
+<logicalOp> 0
+<relationalOp> 0
+<optionalReturn> 1 TK_SEM
+<more_ids> 1 TK_SQR
+<new_34> 6 TK_PLUS TK_MINUS TK_SEM TK_MUL TK_DIV TK_CL

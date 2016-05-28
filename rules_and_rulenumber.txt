@@ -1,0 +1,416 @@
+rule number is : 600
+<program> ===> <otherFunctions> <mainFunction> 
+
+ 
+
+rule number is : 610
+<otherFunctions> ===> TK_EPSILON 
+
+ 
+rule number is : 611
+<otherFunctions> ===> <function> <otherFunctions> 
+
+ 
+
+rule number is : 620
+<mainFunction> ===> TK_MAIN <stmts> TK_END 
+
+ 
+
+rule number is : 630
+<stmts> ===> <typeDefinitions> <declarations> <otherStmts> <returnStmt> 
+
+ 
+
+rule number is : 640
+<function> ===> TK_FUNID <input_par> <output_par> TK_SEM <stmts> TK_END 
+
+ 
+
+rule number is : 650
+<input_par> ===> TK_INPUT TK_PARAMETER TK_LIST TK_SQL <parameter_list> TK_SQR 
+
+ 
+
+rule number is : 660
+<output_par> ===> TK_EPSILON 
+
+ 
+rule number is : 661
+<output_par> ===> TK_OUTPUT TK_PARAMETER TK_LIST TK_SQL <parameter_list> TK_SQR 
+
+ 
+
+rule number is : 670
+<parameter_list> ===> <dataType> TK_ID <remaining_list> 
+
+ 
+
+rule number is : 680
+<dataType> ===> <primitiveDatatype> 
+
+ 
+rule number is : 681
+<dataType> ===> <constructedDatatype> 
+
+ 
+
+rule number is : 690
+<remaining_list> ===> TK_EPSILON 
+
+ 
+rule number is : 691
+<remaining_list> ===> TK_COMMA <parameter_list> 
+
+ 
+
+rule number is : 700
+<primitiveDatatype> ===> TK_INT 
+
+ 
+rule number is : 701
+<primitiveDatatype> ===> TK_REAL 
+
+ 
+
+rule number is : 710
+<constructedDatatype> ===> TK_RECORD TK_RECORDID 
+
+ 
+
+rule number is : 720
+<typeDefinitions> ===> TK_EPSILON 
+
+ 
+rule number is : 721
+<typeDefinitions> ===> <typeDefinition> <typeDefinitions> 
+
+ 
+
+rule number is : 730
+<declarations> ===> TK_EPSILON 
+
+ 
+rule number is : 731
+<declarations> ===> <declaration> <declarations> 
+
+ 
+
+rule number is : 740
+<otherStmts> ===> TK_EPSILON 
+
+ 
+rule number is : 741
+<otherStmts> ===> <stmt> <otherStmts> 
+
+ 
+
+rule number is : 750
+<returnStmt> ===> TK_RETURN <optionalReturn> TK_SEM 
+
+ 
+
+rule number is : 760
+<typeDefinition> ===> TK_RECORD TK_RECORDID <fieldDefinitions> TK_ENDRECORD TK_SEM 
+
+ 
+
+rule number is : 770
+<fieldDefinitions> ===> <fieldDefinition> <fieldDefinition> <moreFields> 
+
+ 
+
+rule number is : 780
+<fieldDefinition> ===> TK_TYPE <primitiveDatatype> TK_COLON TK_FIELDID TK_SEM 
+
+ 
+
+rule number is : 790
+<moreFields> ===> TK_EPSILON 
+
+ 
+rule number is : 791
+<moreFields> ===> <fieldDefinition> <moreFields> 
+
+ 
+
+rule number is : 800
+<global_or_not> ===> TK_EPSILON 
+
+ 
+rule number is : 801
+<global_or_not> ===> TK_COLON TK_GLOBAL 
+
+ 
+
+rule number is : 810
+<declaration> ===> TK_TYPE <dataType> TK_COLON TK_ID <global_or_not> TK_SEM 
+
+ 
+
+rule number is : 820
+<stmt> ===> <assignmentStmt> 
+
+ 
+rule number is : 821
+<stmt> ===> <iterativeStmt> 
+
+ 
+rule number is : 822
+<stmt> ===> <conditionalStmt> 
+
+ 
+rule number is : 823
+<stmt> ===> <ioStmt> 
+
+ 
+rule number is : 824
+<stmt> ===> <funCallStmt> 
+
+ 
+
+rule number is : 830
+<assignmentStmt> ===> <singleOrRecId> TK_ASSIGNOP <arithmeticExpression> TK_SEM 
+
+ 
+
+rule number is : 840
+<iterativeStmt> ===> TK_WHILE TK_OP <booleanExpression> TK_CL <stmt> <otherStmts> TK_ENDWHILE 
+
+ 
+
+rule number is : 850
+<conditionalStmt> ===> TK_IF TK_OP <booleanExpression> TK_CL TK_THEN <stmt> <otherStmts> <elsePart> 
+
+ 
+
+rule number is : 860
+<ioStmt> ===> TK_READ TK_OP <singleOrRecId> TK_CL TK_SEM 
+
+ 
+rule number is : 861
+<ioStmt> ===> TK_WRITE TK_OP <allVar> TK_CL TK_SEM 
+
+ 
+
+rule number is : 870
+<funCallStmt> ===> <outputParameters> TK_CALL TK_FUNID TK_WITH TK_PARAMETERS <inputParameters> TK_SEM 
+
+ 
+
+rule number is : 880
+<singleOrRecId> ===> TK_ID <new_24> 
+
+ 
+
+rule number is : 890
+<new_24> ===> TK_EPSILON 
+
+ 
+rule number is : 891
+<new_24> ===> TK_DOT TK_FIELDID 
+
+ 
+
+rule number is : 900
+<arithmeticExpression> ===> <term> <expPrime> 
+
+ 
+
+rule number is : 910
+<outputParameters> ===> TK_EPSILON 
+
+ 
+rule number is : 911
+<outputParameters> ===> TK_SQL <idList> TK_SQR TK_ASSIGNOP 
+
+ 
+
+rule number is : 920
+<inputParameters> ===> TK_SQL <idList> TK_SQR 
+
+ 
+
+rule number is : 930
+<idList> ===> TK_ID <more_ids> 
+
+ 
+
+rule number is : 940
+<booleanExpression> ===> TK_OP <booleanExpression> TK_CL <logicalOp> TK_OP <booleanExpression> TK_CL 
+
+ 
+rule number is : 941
+<booleanExpression> ===> <var> <relationalOp> <var> 
+
+ 
+rule number is : 942
+<booleanExpression> ===> TK_NOT TK_OP <booleanExpression> TK_CL 
+
+ 
+
+rule number is : 950
+<elsePart> ===> TK_ELSE <stmt> <otherStmts> TK_ENDIF 
+
+ 
+rule number is : 951
+<elsePart> ===> TK_ENDIF 
+
+ 
+
+rule number is : 960
+<allVar> ===> TK_NUM 
+
+ 
+rule number is : 961
+<allVar> ===> TK_RNUM 
+
+ 
+rule number is : 962
+<allVar> ===> TK_ID <new_32> 
+
+ 
+
+rule number is : 970
+<var> ===> TK_ID 
+
+ 
+rule number is : 971
+<var> ===> TK_NUM 
+
+ 
+rule number is : 972
+<var> ===> TK_RNUM 
+
+ 
+
+rule number is : 980
+<all> ===> TK_ID <new_34> 
+
+ 
+rule number is : 981
+<all> ===> TK_NUM 
+
+ 
+rule number is : 982
+<all> ===> TK_RNUM 
+
+ 
+
+rule number is : 990
+<new_32> ===> TK_EPSILON 
+
+ 
+rule number is : 991
+<new_32> ===> TK_DOT TK_FIELDID 
+
+ 
+
+rule number is : 1000
+<expPrime> ===> TK_EPSILON 
+
+ 
+rule number is : 1001
+<expPrime> ===> <lowPrecedenceOperators> <term> <expPrime> 
+
+ 
+
+rule number is : 1010
+<lowPrecedenceOperators> ===> TK_PLUS 
+
+ 
+rule number is : 1011
+<lowPrecedenceOperators> ===> TK_MINUS 
+
+ 
+
+rule number is : 1020
+<term> ===> <factor> <termPrime> 
+
+ 
+
+rule number is : 1030
+<highPrecedenceOperators> ===> TK_MUL 
+
+ 
+rule number is : 1031
+<highPrecedenceOperators> ===> TK_DIV 
+
+ 
+
+rule number is : 1040
+<factor> ===> TK_OP <arithmeticExpression> TK_CL 
+
+ 
+rule number is : 1041
+<factor> ===> <all> 
+
+ 
+
+rule number is : 1050
+<termPrime> ===> TK_EPSILON 
+
+ 
+rule number is : 1051
+<termPrime> ===> <highPrecedenceOperators> <factor> <termPrime> 
+
+ 
+
+rule number is : 1060
+<logicalOp> ===> TK_AND 
+
+ 
+rule number is : 1061
+<logicalOp> ===> TK_OR 
+
+ 
+
+rule number is : 1070
+<relationalOp> ===> TK_LE 
+
+ 
+rule number is : 1071
+<relationalOp> ===> TK_LT 
+
+ 
+rule number is : 1072
+<relationalOp> ===> TK_EQ 
+
+ 
+rule number is : 1073
+<relationalOp> ===> TK_GT 
+
+ 
+rule number is : 1074
+<relationalOp> ===> TK_GE 
+
+ 
+rule number is : 1075
+<relationalOp> ===> TK_NE 
+
+ 
+
+rule number is : 1080
+<optionalReturn> ===> TK_EPSILON 
+
+ 
+rule number is : 1081
+<optionalReturn> ===> TK_SQL <idList> TK_SQR 
+
+ 
+
+rule number is : 1090
+<more_ids> ===> TK_EPSILON 
+
+ 
+rule number is : 1091
+<more_ids> ===> TK_COMMA <idList> 
+
+ 
+
+rule number is : 1100
+<new_34> ===> TK_EPSILON 
+
+ 
+rule number is : 1101
+<new_34> ===> TK_DOT TK_FIELDID 
