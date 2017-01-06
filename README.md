@@ -1,1 +1,2 @@
 # Compiler-Construction
+This a toy compiler of a hypothetical language whose grammar has been given in "PLCC  Language Specifications.pdf" and the analysis of the same in "grammarAnalysis.pdf". The graphical representation of "deterministic finite automaton (DFA)" can be found in "dfa.jpg". This project was done in completion of the course "Compiler Construction".
